@@ -25,7 +25,6 @@
     <!-- Script para o efeito de confete -->
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.4.0/dist/confetti.browser.min.js"></script>
     <script>
-        // Função para disparar o confete
         function startConfetti() {
             confetti({
                 particleCount: 200,
@@ -34,9 +33,20 @@
             });
         }
 
-        // Inicia o confete assim que a página carrega
+        // Inicia o confete e envia uma notificação via webhook
         window.onload = function() {
             startConfetti();
+
+            // Envia notificação via webhook
+            fetch('https://hook.us2.make.com/vr5s48woiwi2kcuauqhf59w3bd640nak', { // Seu webhook URL
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    message: 'Sua mãe acessou o presente!'
+                })
+            });
         };
     </script>
 </body>
